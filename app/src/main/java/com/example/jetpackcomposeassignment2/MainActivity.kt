@@ -19,21 +19,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavDestination
-import androidx.navigation.NavHost
-import androidx.navigation.NavHostController
-import androidx.navigation.Navigator
+import androidx.navigation.*
+import androidx.navigation.compose.rememberNavController
 import com.example.jetpackcomposeassignment2.ui.theme.JetpackComposeAssignment2Theme
-
-
-object NavRoute{
-    val SCREEN_A = "ScreenA"
-    val SCREEN_B = "ScreenB"}
 
 //Author : Chulumanco Buhle Nkwindana
 //219390983
 //13 April 2022
 class MainActivity : ComponentActivity() {
+    lateinit var navController: NavHostController
+    
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,42 +36,15 @@ class MainActivity : ComponentActivity() {
         setContent {
             JetpackComposeAssignment2Theme() {
 
+                navController= rememberNavController()
+                SetupNavGraph(navController = navController)
 
-                Column(
-                    modifier = Modifier.fillMaxSize(),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center
-                )
-                {
-                    MyWelcomeText()
-                    AlertDialog()
-                }
 
-            }
-        }}
 
-@Composable
-fun MyNavHost(navHostController: NavHostController){
-    NavHost(
-        navController=navHostController,
-        startDestination = NavRoute.SCREEN_A
-    ){
 
-    }
-    composable(NavRoute.SCREEN_A, {
-        ScreenA{
-            navHostController.navigate(NavRoute.SCREEN_B)
-        }
-    })
 
-        composable(NavRoute.SCREEN_B){
-            ScreenB{
-                navHostController.navigate(NavRoute.SCREEN_A)
-            }
-        }
-    }
+            }}}}
 
-}
 
 
 
